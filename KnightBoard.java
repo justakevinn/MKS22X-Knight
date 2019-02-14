@@ -48,14 +48,18 @@ public class KnightBoard{
     }
   }
   private boolean removeKnight(int r, int c){
-    board[r][c] = 0;
+    if(board[r][c] != 0){
+      board[r][c] = 0;
+      return true;
+    }
+    return false;
   }
 
   private boolean removeKnight(int counter){
     for (int i = 0; i < board.length; i++){
       for (int j = 0; j < board[i].length; j++){
         if (board[i][j] == counter){
-          board[i][j] == 0;
+          board[i][j] = 0;
           return true;
         }
       }
