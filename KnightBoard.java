@@ -1,6 +1,6 @@
 public class KnightBoard{
 
-  private int[][]board;
+  private int[][] board;
   private int rows;
   private int cols;
   private int[] moves;
@@ -25,7 +25,7 @@ public class KnightBoard{
   public String toString(){
     String s = "";
     for (int i = 0; i < board.length; i++){
-      for (int j = 0; j <board[i].length; j++){
+      for (int j = 0; j < board[i].length; j++){
         if (board[i][j] < 10){
           s = s + " " + board[i][j];
         }
@@ -35,9 +35,32 @@ public class KnightBoard{
     return s;
   }
 
-  private boolean addKnight(int r, int c){
-    return true;
+  private boolean addKnight(int r, int c, int counter){
+    if (r >= rows || c >= cols || r < 0 || c < 0){
+      return false;
+    }
+    if (board[r][c] != 0){
+      return false;
+    }
+    else{
+      board[r][c] = counter;
+      return true;
+    }
+  }
+  private boolean removeKnight(int r, int c){
+    board[r][c] = 0;
+  }
 
+  private boolean removeKnight(int counter){
+    for (int i = 0; i < board.length; i++){
+      for (int j = 0; j < board[i].length; j++){
+        if (board[i][j] == counter){
+          board[i][j] == 0;
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
 
