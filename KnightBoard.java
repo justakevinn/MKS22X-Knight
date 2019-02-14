@@ -19,7 +19,7 @@ public class KnightBoard{
                       -2, -1,
                       -2, 1,
                        1, 2,
-                      -1, 2}
+                      -1, 2};
   }
 
   public String toString(){
@@ -36,7 +36,7 @@ public class KnightBoard{
   }
 
   private boolean addKnight(int r, int c){
-
+    return true;
 
   }
 
