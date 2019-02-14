@@ -31,8 +31,8 @@ public class KnightBoard{
         }
         s += board[i][j];
       }
-
     }
+    return s;
   }
 
   private boolean addKnight(int r, int c){
