@@ -3,6 +3,7 @@ public class KnightBoard{
   private int[][]board;
   private int rows;
   private int cols;
+  private int[] moves;
 
   public KnightBoard(int startingRows,int startingCols){
     if (startingCols == 0 || startingRows == 0){
@@ -11,6 +12,14 @@ public class KnightBoard{
     board = new int[startingRows][startingCols];
     rows = startingRows;
     cols = startingCols;
+    moves = new int[] {1, -2,
+                      -1, -2,
+                       2, -1,
+                       2, 1,
+                      -2, -1,
+                      -2, 1,
+                       1, 2,
+                      -1, 2}
   }
 
   public String toString(){
