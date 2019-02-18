@@ -27,7 +27,7 @@ public class KnightBoard{
 		for (int i = 0; i < board.length;i++) {
 		    for (int j = 0; j < board[i].length;j++) {
 			if (board[i][j] == 0) {
-			    returner += "_ ";
+			    returner += "__ ";
 			}
 			else {
 			    if (board[i][j] < 10) {
@@ -86,22 +86,22 @@ public class KnightBoard{
   private boolean solveH(int r, int c, int counter){
     if (r >= rows || c >= cols || r < 0 || c < 0) {
       		return false;
-        }
+    }
     if (board[r][c] != 0) {
       return false;
     }
     board[r][c] = counter;
+    System.out.println(toString());
     if (counter == rows * cols) {
       return true;
     }
-    boolean works = false;
     for (int i = 0; i < moves.length; i += 2) {
-    		works = solveH(r+moves[i],c+moves[i+1],counter+1);
-    	}
-    if (!works) {
-    	board[r][c] = 0;
+    		if (solveH(r+moves[i],c+moves[i+1],counter+1)){
+          removeKnight(r,c);
+        }
+
     }
-    return works;
+    return false;
   }
 
 
@@ -119,7 +119,7 @@ public class KnightBoard{
 
   public static void main (String[] args){
     KnightBoard test = new KnightBoard(5, 5);
-    test.solve(4, 0);
+    System.out.println(test.solve(0, 0));
     System.out.println(test);
   }
 
