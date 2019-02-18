@@ -97,10 +97,10 @@ public class KnightBoard{
     }
     for (int i = 0; i < moves.length; i += 2) {
     		if (solveH(r+moves[i],c+moves[i+1],counter+1)){
-          removeKnight(r,c);
+          return true;
         }
-
-    }
+      }
+    removeKnight(r,c);
     return false;
   }
 
