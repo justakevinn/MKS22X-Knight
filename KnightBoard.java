@@ -30,12 +30,11 @@ public class KnightBoard{
 			    returner += "_ ";
 			}
 			else {
-			    String s = board[i][j] + "";
-			    if (s.length() == 1) {
-			    	returner += " " + s + " ";
+			    if (board[i][j] < 10) {
+			    	returner += " " + board[i][j] + " ";
 			    }
 			    else {
-			    	returner += s + " ";
+			    	returner += board[i][j] + " ";
 			    }
 			}
 		    }
