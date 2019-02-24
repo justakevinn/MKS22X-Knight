@@ -27,7 +27,7 @@ public class KnightBoard{
 		for (int i = 0; i < board.length;i++) {
 		    for (int j = 0; j < board[i].length;j++) {
 			if (board[i][j] == 0) {
-			    returner += "__ ";
+			    returner += " _ ";
 			}
 			else {
 			    if (board[i][j] < 10) {
@@ -91,7 +91,7 @@ public class KnightBoard{
       return false;
     }
     board[r][c] = counter;
-    System.out.println(toString());
+  //  System.out.println(toString());
     if (counter == rows * cols) {
       return true;
     }
@@ -115,6 +115,35 @@ public class KnightBoard{
     	}
     	return true;
     }
+
+
+  public int countSolutions(int startingRow, int startingCol){
+    checkBoard();
+    if (startingRow >= rows || startingCol >= cols || startingRow < 0 || startingCol < 0){
+      throw new IllegalArgumentException();
+    }
+    return countSolutionsH(startingRow, startingCol, 1);
+  }
+
+  private int countSolutionsH(int row, int col, int counter){
+    int total = 0;
+    if (row >= rows || col >= cols || row < 0 || col < 0) {
+      		return 0;
+    }
+    if (board[row][col] != 0) {
+      return 0;
+    }
+    board[row][col] = counter;
+    if (counter == rows * cols) {
+      return 1;
+    }
+    for (int i = 0; i < moves.length; i += 2) {
+      board[row][col] = counter;
+      total += countSolutionsH(row + moves[i],col+moves[i+1],counter+1);
+    		board[row][col] = 0;
+      }
+    return total;
+  }
 
 
   public static void main (String[] args){
