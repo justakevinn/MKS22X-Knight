@@ -133,15 +133,14 @@ public class KnightBoard{
     if (board[row][col] != 0) {
       return 0;
     }
-    board[row][col] = counter;
     if (counter == rows * cols) {
       return 1;
     }
     for (int i = 0; i < moves.length; i += 2) {
       board[row][col] = counter;
       total += countSolutionsH(row + moves[i],col+moves[i+1],counter+1);
-    		board[row][col] = 0;
-      }
+    	board[row][col] = 0;
+    }
     return total;
   }
 
@@ -150,6 +149,8 @@ public class KnightBoard{
     KnightBoard test = new KnightBoard(5, 5);
     System.out.println(test.solve(0, 0));
     System.out.println(test);
+    KnightBoard test2 = new KnightBoard(5, 5);
+    System.out.println(test2.countSolutions(0, 0));
   }
 
 
