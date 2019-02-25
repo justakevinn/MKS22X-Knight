@@ -6,7 +6,7 @@ public class KnightBoard{
   private int[] moves;
 
   public KnightBoard(int startingRows,int startingCols){
-    if (startingCols == 0 || startingRows == 0){
+    if (startingCols <= 0 || startingRows <= 0){
       throw new IllegalArgumentException();
     }
     board = new int[startingRows][startingCols];
@@ -90,7 +90,7 @@ public class KnightBoard{
     if (board[r][c] != 0) {
       return false;
     }
-    board[r][c] = counter;
+    addKnight(r,c,counter);
   //  System.out.println(toString());
     if (counter == rows * cols) {
       return true;
@@ -137,21 +137,57 @@ public class KnightBoard{
       return 1;
     }
     for (int i = 0; i < moves.length; i += 2) {
-      board[row][col] = counter;
+      addKnight(row, col, counter);
       total += countSolutionsH(row + moves[i],col+moves[i+1],counter+1);
-    	board[row][col] = 0;
+    	removeKnight(row, col);
     }
     return total;
   }
 
+  //testcase must be a valid index of your input/output array
+public static void runTest(int i){
+
+  KnightBoard b;
+  int[]m =   {4,5,5,5,5};
+  int[]n =   {4,5,4,5,5};
+  int[]startx = {0,0,0,1,2};
+  int[]starty = {0,0,0,1,2};
+  int[]answers = {0,304,32,56,64};
+  if(i >= 0 ){
+    try{
+      int correct = answers[i];
+      b = new KnightBoard(m[i%m.length],n[i%m.length]);
+
+      int ans  = b.countSolutions(startx[i],starty[i]);
+
+      if(correct==ans){
+        System.out.println("PASS board size: "+m[i%m.length]+"x"+n[i%m.length]+" "+ans);
+      }else{
+        System.out.println("FAIL board size: "+m[i%m.length]+"x"+n[i%m.length]+" "+ans+" vs "+correct);
+      }
+    }catch(Exception e){
+      System.out.println("FAIL Exception case: "+i);
+
+    }
+  }
+}
 
   public static void main (String[] args){
-    KnightBoard test = new KnightBoard(5, 5);
+    runTest(0);
+    runTest(1);
+    runTest(2);
+    runTest(3);
+    runTest(4);
+  /*  KnightBoard test = new KnightBoard(5, 5);
     System.out.println(test.solve(0, 0));
     System.out.println(test);
     KnightBoard test2 = new KnightBoard(5, 5);
     System.out.println(test2.countSolutions(0, 0));
+    KnightBoard test3 = new KnightBoard(3, 4);
+    System.out.println(test3.countSolutions(0, 0));
+    */
   }
+
 
 
 }
