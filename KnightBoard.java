@@ -172,8 +172,8 @@ public class KnightBoard{
       for (int i = 0; i < moves.length; i += 2) {
         if ((r + moves[i]) > 0 && (r + moves[i]) < opt.length &&
             (c + moves[i+1]) > 0 && (c +moves[i+1]) < opt[0].length
-            && opt[r][c] != 0){
-              opt[r][c] --;
+            && opt[r + moves[i]][c +moves[i+1]] != 0){
+              opt[r + moves[i]][c +moves[i+1]] --;
             }
           }
       return hold;
@@ -184,8 +184,8 @@ public class KnightBoard{
       for (int i = 0; i < moves.length; i += 2) {
         if (r + moves[i] > 0 && r + moves[i] < opt.length &&
             c + moves[i+1] > 0 && c +moves[i+1] < opt[0].length
-            && opt[r][c] != 0){
-              opt[r][c] ++;
+            && opt[r + moves[i]][c +moves[i+1]] != 0){
+              opt[r + moves[i]][c +moves[i+1]] ++;
             }
           }
       return true;
@@ -301,6 +301,7 @@ public class KnightBoard{
 
       KnightBoard test = new KnightBoard(5, 5);
       test.solve(0,0);
+      System.out.println(test);
     /*  test.fillOpt(test.opt);
       System.out.println(StringOpt(test.opt));
       KnightBoard test2 = new KnightBoard(6, 6);
